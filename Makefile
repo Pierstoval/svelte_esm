@@ -11,6 +11,11 @@ help: ## Show this help.
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-15s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m## */[33m/'
 .PHONY: help
 
+init: ## Sets up the proof of concept
+	git submodule init
+	$(MAKE) build-svelte
+.PHONY: build-svelte
+
 build-svelte: ## Build Svelte in the "svelte/" directory
 	(cd svelte && npm install && cd -)
 	(cd svelte && PUBLISH=1 npm run build && cd -)
