@@ -1,0 +1,4 @@
+[submodule "svelte"]
+	path = svelte
+	url = git@github.com:Pierstoval/svelte.git
+	branch = deno3

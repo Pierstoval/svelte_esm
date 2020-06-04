@@ -1,0 +1,14 @@
+{
+    "files": [
+        "compile.ts",
+        "server.ts"
+    ],
+    "exclude": [
+        "svelte/*",
+        "output/"
+    ],
+    "compilerOptions": {
+        "strict": false,
+        "alwaysStrict": false
+    }
+}
