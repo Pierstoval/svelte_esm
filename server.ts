@@ -8,6 +8,15 @@ const s = serve({ port: PORT });
 console.log(`http://127.0.0.1:${PORT}/`);
 
 for await (const req of s) {
+    if (req.url === '/svelte/internal') {
+        const h = new Headers();
+        h.set('Content-Type', 'text/javascript');
+        req.respond({
+            headers: h,
+            body: await readFileStr('./svelte/internal/index.mjs')
+        });
+        continue;
+    }
     const renderedComponent = _DenoComponent.render();
     const JS = await readFileStr('./output/Deno.svelte.dom.js');
     const CSS = renderedComponent.css.code;
